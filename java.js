@@ -47,7 +47,7 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
-// Display the results of each round, triggering gameEnd() the game after 5 rounds
+// Display the results of each round and triggers gameEnd() after 5 rounds
 function game(result) {
     if (result === "playerWin") {
     ++playerWins
@@ -67,7 +67,7 @@ function game(result) {
     console.log("Timer= " + timer + " rounds left")
         if (timer === 0) {
             gameEnd()
-    }
+        }
     }
 }
 
