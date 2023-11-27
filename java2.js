@@ -3,13 +3,18 @@ let comptuerSelection = "";
 let playerWinCounter = 0;
 let computerWinCounter = 0;
 
-const playerChoiceText = document.getElementById('playerChoiceText');
-const computerChoiceText = document.getElementById('computerChoiceText');
+const playerCompSelections = document.getElementById('choices');
+
 const playerScoreText = document.getElementById('playerScoreText');
+    playerScoreText.textContent = `You have KO\'d ${playerWinCounter} of your opponents pokemon!`
+
 const computerScoreText = document.getElementById('computerScoreText');
-let roundText = document.getElementById('roundDescription');
+    computerScoreText.textContent = `Your opponent has KO\'d ${computerWinCounter} of your pokemon!`
+
+const roundText = document.getElementById('roundResults');
 
 const wrapper = document.getElementById('wrapper');
+
 
 wrapper.addEventListener('click', (event) => {
     playerSelection = event.target.className;
@@ -27,36 +32,38 @@ wrapper.addEventListener('click', (event) => {
 
 
 function playRound(){
-    playRound
+
+    playerCompSelections.textContent = `You chose a ${playerSelection} type, while the opponent chose a ${computerSelection} type.`
 
     if (playerSelection === computerSelection) {
         console.log("It's a tie!")
+        roundText.textContent = "Both pokemon are still standing!"
     }
 
     else if (playerSelection === "fire") {
         if (computerSelection === "water") {
-            computerWin()
+            return computerWin()
         }
         else {
-            playerWin()
+            return playerWin()
         }
     }
 
     else if (playerSelection === "water") {
         if (computerSelection === "grass") {
-            computerWin()
+            return computerWin()
         }
         else {
-            playerWin()
+            return playerWin()
         }
     }
 
     else if (playerSelection === "grass") {
         if (computerSelection === "fire") {
-            computerWin()
+            return computerWin()
         }
         else {
-            playerWin()
+            return playerWin()
         }
     }
 }
@@ -78,22 +85,22 @@ function getComputerChoice() {
 function scoreCheck(score) {
     if (score === "playerWin") {
         ++playerWinCounter;
+        playerScoreText.textContent = `You have KO\'d ${playerWinCounter} of your opponents pokemon!`
     }
 
     else if (score === "computerWin") {
         ++computerWinCounter;
+        computerScoreText.textContent = `Your opponent has KO\'d ${computerWinCounter} of your pokemon!`
     }
 
     if (playerWinCounter === 3) {
-        console.log("You won the battle!");
-        playerWinCounter = 0;
-        computerWinCounter = 0;
+        roundText.textContent = "You won the battle!";
+        gameEnd()
     }
 
     if (computerWinCounter === 3) {
-        console.log("You lost the battle...");
-        playerWinCounter = 0;
-        computerWinCounter = 0;
+        roundText.textContent = "You lost the battle...";
+        gameEnd()
     }
 }
 
@@ -107,4 +114,18 @@ function playerWin() {
     console.log ("The enemy pokemon has fainted!")
     roundText.textContent = "The enemy pokemon has fainted!";
     return ("playerWin")
+}
+
+function gameEnd() {
+    wrapper.addEventListener('click', (reset))
+    
+}
+
+//Currently resets score after first round- Fix later
+function reset() {
+    playerWinCounter = 0;
+    computerWinCounter = 0;
+    playerScoreText.textContent = `You have KO\'d ${playerWinCounter} of your opponents pokemon!`
+    computerScoreText.textContent = `Your opponent has KO\'d ${computerWinCounter} of your pokemon!`
+    wrapper.removeEventListener('click', (reset))
 }
