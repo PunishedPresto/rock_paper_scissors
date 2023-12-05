@@ -4,24 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Fire Grass Water</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="scores">
-        <p id="playerScoreText"></p>
-        <p id="computerScoreText"></p>
-    </div>
-    
-    <div id="wrapper">
-        <button class="fire">Fire</button>
-        <button class="grass">Grass</button>
-        <button class="water">Water</button>
-    </div>
+   
 
-    <p id="roundResults"></p>
-    <p id="choices"></p>
-    
+        <div id="scores">
+            <p id="playerScoreText"></p>
+            <p id="computerScoreText"></p>
+        </div>
 
+        <div class="buttonWrapper">
+            <div id="wrapper">
+                <button id="fire">Fire</button>
+                <button id="grass">Grass</button>
+                <button id="water">Water</button>
+            </div>
+            <button id="restart">Restart?</button>
+        </div>
+
+        <p id="roundResults"></p>
+
+        <div id="results"></div>
+        
+    
     
     
     <script src="java2.js">

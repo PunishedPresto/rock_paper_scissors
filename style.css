@@ -1,0 +1,62 @@
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#masterDiv {
+    display: flex;
+    justify-content: center;
+}
+
+#buttonWrapper {
+    display: inline-flex;
+    
+}
+
+#fire {
+    color: rgb(255, 42, 106);
+    background-color: darkred;
+}
+
+#grass {
+    color: lightgreen;
+    background-color: darkgreen;
+}
+
+#water {
+    color: lightblue;
+    background-color: darkblue;
+}
+
+#results {
+    display: inline-flex;
+    flex-direction: row;
+    flex-basis: auto;
+    align-items: center;
+    height: 20px;
+
+    padding-right: 0;
+    padding: 0px;
+}
+
+div span {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.buttonWrapper {
+    height:20px;
+}
+
+#wrapper {
+    pointer-events: none;
+}
+
+button {
+    pointer-events: auto;
+}
+

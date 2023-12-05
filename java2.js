@@ -1,5 +1,5 @@
 let playerSelection = "";
-let comptuerSelection = "";
+let computerSelection = "";
 let playerWinCounter = 0;
 let computerWinCounter = 0;
 
@@ -15,9 +15,15 @@ const roundText = document.getElementById('roundResults');
 
 const wrapper = document.getElementById('wrapper');
 
+const results = document.getElementById('results');
+
+const restart = document.getElementById('restart')
+restart.style.visibility = "hidden"
+
+
 
 wrapper.addEventListener('click', (event) => {
-    playerSelection = event.target.className;
+    playerSelection = event.target.id;
     console.log(playerSelection);
 
     computerSelection = getComputerChoice();
@@ -29,11 +35,26 @@ wrapper.addEventListener('click', (event) => {
 
     })
 
+    //Try making strings a <p> object, then appending them all as children to a <div>
+const string1 = document.createElement("p")
+const span1 = document.createElement("span");
+const string2 = document.createElement("p")
+const span2 = document.createElement("span");
+const string3 = document.createElement("p")
+
+
+results.appendChild(string1)
+results.appendChild(span1)
+results.appendChild(string2)
+results.appendChild(span2)
+results.appendChild(string3)
 
 
 function playRound(){
 
-    playerCompSelections.textContent = `You chose a ${playerSelection} type, while the opponent chose a ${computerSelection} type.`
+    roundManager()
+
+   
 
     if (playerSelection === computerSelection) {
         console.log("It's a tie!")
@@ -93,12 +114,12 @@ function scoreCheck(score) {
         computerScoreText.textContent = `Your opponent has KO\'d ${computerWinCounter} of your pokemon!`
     }
 
-    if (playerWinCounter === 3) {
+    if (playerWinCounter === 6) {
         roundText.textContent = "You won the battle!";
         gameEnd()
     }
 
-    if (computerWinCounter === 3) {
+    if (computerWinCounter === 6) {
         roundText.textContent = "You lost the battle...";
         gameEnd()
     }
@@ -117,15 +138,30 @@ function playerWin() {
 }
 
 function gameEnd() {
-    wrapper.addEventListener('click', (reset))
+    wrapper.style.visibility = "hidden";
+    restart.style.visibility = "visible"
+    restart.addEventListener('click', (reset))
     
 }
 
 //Currently resets score after first round- Fix later
 function reset() {
+    restart.style.visibility = "hidden"
     playerWinCounter = 0;
     computerWinCounter = 0;
     playerScoreText.textContent = `You have KO\'d ${playerWinCounter} of your opponents pokemon!`
     computerScoreText.textContent = `Your opponent has KO\'d ${computerWinCounter} of your pokemon!`
-    wrapper.removeEventListener('click', (reset))
+    restart.removeEventListener('click', (reset))
+    wrapper.style.visibility = "visible";
+}
+
+
+function roundManager() {
+    string1.textContent = "You chose a ";
+    span1.setAttribute ('id',playerSelection);
+    span1.innerHTML = (playerSelection)
+    string2.textContent = " type, while the opponent chose a ";
+    span2.setAttribute ('id',computerSelection);
+    span2.innerHTML = (computerSelection)
+    string3.textContent = " type.";
 }
